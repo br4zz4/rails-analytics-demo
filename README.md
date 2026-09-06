@@ -6,7 +6,7 @@ Serve como playground para **ver a gem funcionando** de ponta a ponta.
 ## Pré-requisitos
 
 - Ruby >= 3.0, Rails >= 7.0
-- A gem `rails_analytics` clonada em `../rails-analytcs` (este app aponta para ela via `path`)
+- A gem `rails_analytics` clonada em `../rails-analytics` (este app aponta para ela via `path`)
 
 ## Rodando
 
@@ -82,7 +82,7 @@ bin/rails generate rails_analytics:install
 Os testes de integração da gem rodam no dummy app interno dela:
 
 ```bash
-cd ../rails-analytcs
+cd ../rails-analytics
 bin/rails test   # na raiz da gem, roda a suíte completa
 ```
 

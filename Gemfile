@@ -10,7 +10,7 @@ gem "sqlite3", ">= 2.1"
 gem "puma", ">= 5.0"
 
 # Analytics estilo Umami — gem local via path
-gem "rails_analytics", path: "../rails-analytcs"
+gem "rails_analytics", path: "../rails-analytics"
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: %i[ windows jruby ]

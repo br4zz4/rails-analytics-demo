@@ -1,5 +1,5 @@
 PATH
-  remote: ../rails-analytcs
+  remote: ../rails-analytics
   specs:
     rails_analytics (0.1.0)
       rails (>= 7.0)

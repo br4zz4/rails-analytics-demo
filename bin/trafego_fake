@@ -1,0 +1,64 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+# Gera tráfego REAL contra o pixel da app demo, simulando navegadores.
+# Uso: bin/trafego_fake [quantidade] [base_url]
+# Exemplo: bin/trafego_fake 100 http://localhost:3000
+
+require "net/http"
+require "uri"
+require "securerandom"
+
+base = ARGV[1] || "http://localhost:3000"
+count = (ARGV[0] || 50).to_i
+
+pages = %w[/ /blog /blog/primeiro-post /blog/rails-8 /blog/analytics-sem-cookies /produtos /contato]
+titles = {
+  "/" => "Acme Store — Home", "/blog" => "Blog — Acme Store",
+  "/blog/primeiro-post" => "Primeiro post", "/blog/rails-8" => "Rails 8: o que mudou",
+  "/blog/analytics-sem-cookies" => "Analytics sem cookies", "/produtos" => "Produtos",
+  "/contato" => "Contato"
+}
+referrers = ["", "", "https://google.com", "https://twitter.com", "https://github.com"]
+uas = [
+  "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36",
+  "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36",
+  "Mozilla/5.0 (iPhone; CPU iPhone OS 17_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.5 Mobile/15E148 Safari/604.1",
+  "Mozilla/5.0 (X11; Linux x86_64; rv:126.0) Gecko/20100101 Firefox/126.0"
+]
+screens = [[1440, 900], [1920, 1080], [390, 844], [768, 1024]]
+
+ok = 0
+failures = 0
+
+count.times do |i|
+  uri = URI.parse(base)
+  uid = SecureRandom.hex(8)
+  page = pages.sample
+
+  params = {
+    sid: "demo-#{uid}",
+    path: page,
+    referrer: referrers.sample,
+    title: titles.fetch(page, "Demo"),
+    sw: screens.sample[0],
+    sh: screens.sample[1],
+    lang: %w[pt-BR pt-BR en-US es-ES].sample
+  }
+  uri.path = "/rails_analytics/px.gif"
+  uri.query = URI.encode_www_form(params)
+
+  req = Net::HTTP::Get.new(uri)
+  req["User-Agent"] = uas.sample
+
+  res = Net::HTTP.start(uri.host, uri.port) { |http| http.request(req) }
+
+  if res.code == "200"
+    ok += 1
+  else
+    failures += 1
+    warn "Falha (#{res.code}): #{page}"
+  end
+end
+
+puts "Trafego fake gerado: #{ok} ok, #{failures} falhas. Veja o dashboard em #{base}/rails_analytics"

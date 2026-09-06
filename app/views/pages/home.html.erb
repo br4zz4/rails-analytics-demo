@@ -1,0 +1,33 @@
+<% content_for :title, "Acme Store — Home" %>
+
+<div class="hero">
+  <h1>Bem-vindo à Acme Store</h1>
+  <p class="hero-sub">Este é um app de exemplo para a gem <strong>rails_analytics</strong>. Navegue pelas páginas e veja suas visitas aparecerem em tempo real no dashboard.</p>
+  <div class="hero-actions">
+    <a class="btn btn-primary" href="/produtos">Ver produtos</a>
+    <a class="btn btn-outline" href="/rails_analytics">Abrir dashboard</a>
+  </div>
+</div>
+
+<div class="feature-grid">
+  <div class="feature">
+    <span class="feature-icon">📈</span>
+    <h3>Tráfego coletado</h3>
+    <p>Cada página que você visita gera uma <code>page_view</code> no banco.</p>
+  </div>
+  <div class="feature">
+    <span class="feature-icon">🔒</span>
+    <h3>Sem cookies</h3>
+    <p>Identificador de sessão vai para <code>localStorage</code>, nunca para cookies.</p>
+  </div>
+  <div class="feature">
+    <span class="feature-icon">🕶️</span>
+    <h3>IP hasheado</h3>
+    <p>Seu IP é guardado apenas como SHA-256 com salt — impossível reverter.</p>
+  </div>
+  <div class="feature">
+    <span class="feature-icon">🎨</span>
+    <h3>Dashboard nativo</h3>
+    <p>Server-rendered, zero JS de terceiros, tema claro/escuro automático.</p>
+  </div>
+</div>

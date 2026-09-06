@@ -1,0 +1,14 @@
+<% content_for :title, "Produtos — Acme Store" %>
+
+<h1 class="page-title">Produtos</h1>
+
+<div class="product-grid">
+  <% ["Camiseta Rails", "Caneca Ruby", "Poster Git", "Adesivo TDD", "Hoodie Hotwire", "Mousepad PostgreSQL"].each_with_index do |name, i| %>
+    <div class="product-card">
+      <span class="product-emoji">🛍️</span>
+      <h3><%= name %></h3>
+      <p class="product-price">R$ <%= 49 + i * 37 %>,90</p>
+      <button class="btn btn-primary btn-sm" disabled>Comprar (demo)</button>
+    </div>
+  <% end %>
+</div>

@@ -1,0 +1,14 @@
+<% content_for :title, "#{@post[:title]} — Blog" %>
+
+<article class="post-article">
+  <p class="breadcrumb"><a href="/blog">← Blog</a></p>
+  <h1><%= @post[:title] %></h1>
+  <p class="post-meta">Publicado em <time>Set 2026</time> · ~5 min de leitura</p>
+  <div class="post-body">
+    <p><%= @post[:excerpt] %></p>
+    <p>Este é um post de demonstração. Em produção, aqui estaria o conteúdo real do
+    seu blog — e cada leitura geraria uma linha em <code>rails_analytics_page_views</code>.</p>
+    <p>O referrer desta visita aparece no dashboard como <code>/blog</code> — o tracker
+    coleta <code>document.referrer</code> automaticamente.</p>
+  </div>
+</article>

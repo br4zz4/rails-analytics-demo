@@ -39,7 +39,7 @@ bin/rails server
 ### 5. Ver funcionando
 
 - Abra **http://localhost:3000** e navegue pelas páginas (Home, Blog, Produtos, Contato).
-- Acesse o dashboard em **http://localhost:3000/rails_analytics**.
+- Acesse o dashboard em **http://localhost:3000/analytics**.
 - Volte no app, navegue mais um pouco e **recarregue o dashboard** — suas visitas reais já estão lá.
 
 ### 6. (Opcional) Gerar tráfego fake real via pixel
@@ -66,9 +66,9 @@ Tema claro/escuro automático. Tudo sem cookies — o identificador de sessão u
 ## Estrutura da integração
 
 ```
-config/routes.rb          → mount RailsAnalytics::Engine => "/rails_analytics"
+config/routes.rb          → mount RailsAnalytics::Engine => "/analytics"
 app/views/layouts/application.html.erb → rails_analytics_tracker_tag no <head>
-db/migrate/*_rails_analytics_page_views.rb → tabela criada pela migração da gem
+db/migrate/*_rails_analytics_*.rb → tabelas criadas pelas migrations da gem (daily_salts, visits, events)
 ```
 
 Tudo gerado automaticamente por:

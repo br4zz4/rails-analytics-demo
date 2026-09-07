@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  mount RailsAnalytics::Engine => "/rails_analytics"
+  mount RailsAnalytics::Engine => "/analytics"
 
   get "up" => "rails/health#show", as: :rails_health_check
 
